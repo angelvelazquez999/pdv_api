@@ -1,7 +1,3 @@
-"""
-Configuración de la base de datos con SQLAlchemy.
-Se crea una sola instancia de la sesión que se pasa como contexto.
-"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session

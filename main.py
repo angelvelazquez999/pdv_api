@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database import init_db
 from routers import usuario, auth_router
+from utils.app_exceptions import app_exception_handler, AppExceptionCase
 
 app = FastAPI(
     title="API PDV",
@@ -17,13 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.add_exception_handler(AppExceptionCase, app_exception_handler)
+
 app.include_router(auth_router)
 app.include_router(usuario)
-
-
-@app.on_event("startup")
-def on_startup():
-    init_db()
 
 
 @app.get("/")
