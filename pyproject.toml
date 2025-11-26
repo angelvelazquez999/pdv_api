@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "api"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.121.0"
+uvicorn = "^0.38.0"
+passlib = {extras = ["argon2"], version = "^1.7.4"}
+sqlalchemy = "^2.0.44"
+python-jose = "^3.5.0"
+argon2-cffi = "^25.1.0"
+psycopg2-binary = "^2.9.11"
+pydantic = "^2.12.4"
+python-multipart = "^0.0.20"
+python-dotenv = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
