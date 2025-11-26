@@ -1,29 +1,32 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
+from schemas.response_model import SafeDelete
 
-class UsuarioBase(BaseModel):
+class UpdateModel(BaseModel):
+    class Config:
+        extra = "forbid"
+
+
+class UsuarioCreate(UpdateModel):
     nombre: str = Field(..., max_length=100, description="Nombre del usuario")
     apellidos: str = Field(..., max_length=100, description="Apellidos del usuario")
     correo: str = Field(..., max_length=100, description="Correo electrónico del usuario")
-
-
-class UsuarioCreate(UsuarioBase):
     password: str = Field(..., min_length=6, description="Contraseña del usuario")
 
 
-class UsuarioUpdate(BaseModel):
+class UsuarioUpdate(UpdateModel):
     nombre: Optional[str] = Field(None, max_length=100)
     apellidos: Optional[str] = Field(None, max_length=100)
     correo: Optional[str] = Field(None, max_length=100)
     password: Optional[str] = Field(None, min_length=6)
 
 
-class UsuarioResponse(UsuarioBase):
+class UsuarioGet(SafeDelete):
     id: int
-
-    class Config:
-        from_attributes = True
+    nombre: str
+    apellidos: str
+    correo: str
 
 
 class UsuarioLogin(BaseModel):

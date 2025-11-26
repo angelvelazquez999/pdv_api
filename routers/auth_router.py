@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services.auth_service import AuthService
 from services.usuario import UsuarioService
-from schemas.usuario import UsuarioLogin, UsuarioCreate, UsuarioResponse, Token
+from schemas.usuario import UsuarioLogin, UsuarioCreate, UsuarioGet, Token
 
 router = APIRouter(
     prefix="/auth",
@@ -12,7 +12,7 @@ router = APIRouter(
 )
 
 
-@router.post("/register", response_model=UsuarioResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/register", response_model=UsuarioGet, status_code=status.HTTP_201_CREATED)
 def register(
     usuario_data: UsuarioCreate,
     db: Session = Depends(get_db)
