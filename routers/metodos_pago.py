@@ -44,3 +44,14 @@ async def create_metodo_pago(
 ):
     result, metodo_pago_id = handle_result(MetodosPagoService(db).create_metodo_pago(item))
     return result
+
+
+@router.put("/{id}", status_code=200, summary="Obtiene un objeto metodo de pago en la base de datos para poder editarlo", response_model=MetodosPagoGet)
+async def update_metodo_pago(id: int, metodo_pago: MetodosPagoCreate, db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    result = handle_result(MetodosPagoService(db).update_metodos_pago(id, metodo_pago))
+    return result
+
+@router.delete("/{id}", status_code=200, summary="Obtiene un objeto de metodo de pago en la base de datos para posteriormente borrarlo", response_model=ResponseModel)
+async def delete_metodo_pago(id: int, db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    result = handle_result(MetodosPagoService(db).delete_metodo_pago(id))
+    return result

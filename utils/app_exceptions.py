@@ -43,14 +43,6 @@ class AppException(object):
             status_code = 404
             AppExceptionCase.__init__(self, status_code, context)
     
-    class UpdateProveedor(AppExceptionCase):
-        def __init__(self, context: dict = None):
-            """
-            Proveedor no encontrado
-            """
-            status_code = 404
-            AppExceptionCase.__init__(self, status_code, context)
-    
     class GetUsuario(AppExceptionCase):
         def __init__(self, context: dict = None):
             """
@@ -135,6 +127,46 @@ class AppException(object):
         def __init__(self, context: dict = None):
             """
             Proveedor no encontrado
+            """
+            status_code = 404
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class UpdateProveedor(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Proveedor no encontrado
+            """
+            status_code = 404
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class DeleteMetodoPago(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Error al eliminar método de pago
+            """
+            status_code = 500
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class CreateMetodoPago(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Error al crear método de pago
+            """
+            status_code = 500
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class GetMetodoPago(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Método de pago no encontrado
+            """
+            status_code = 404
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class UpdateMetodoPago(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Método de pago no encontrado
             """
             status_code = 404
             AppExceptionCase.__init__(self, status_code, context)

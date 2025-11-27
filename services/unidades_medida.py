@@ -14,7 +14,7 @@ class UnidadesMedidaService(AppService):
     
 
     def get_unidad_medida_by_id(self, unidad_medida_id: int) -> ServiceResult:
-        unidad_medida = UnidadMedidaCRUD(self.db).get_unidad_medida_by_id(unidad_medida_id)
+        unidad_medida = UnidadMedidaCRUD(self.db).get_unidad_medida_by_id_for_router(unidad_medida_id)
         if not unidad_medida:
             return ServiceResult(AppException.GetPanaSeccion({"Message": f"No se ha encontrado una unidad de medida con el id: {unidad_medida_id}"}))
         return ServiceResult(unidad_medida)
