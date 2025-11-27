@@ -43,10 +43,10 @@ class AppException(object):
             status_code = 404
             AppExceptionCase.__init__(self, status_code, context)
     
-    class GetPanaSeccion(AppExceptionCase):
+    class UpdateProveedor(AppExceptionCase):
         def __init__(self, context: dict = None):
             """
-            Recurso no encontrado
+            Proveedor no encontrado
             """
             status_code = 404
             AppExceptionCase.__init__(self, status_code, context)
@@ -113,4 +113,28 @@ class AppException(object):
             Permiso denegado
             """
             status_code = 401
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class DeleteProveedor(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Error al eliminar proveedor
+            """
+            status_code = 500
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class CreateProveedor(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Error al crear proveedor
+            """
+            status_code = 500
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class GetProveedor(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Proveedor no encontrado
+            """
+            status_code = 404
             AppExceptionCase.__init__(self, status_code, context)

@@ -44,3 +44,13 @@ async def create_unidad_medida(
 ):
     result, unidad_medida_id = handle_result(UnidadesMedidaService(db).create_unidad_medida(item))
     return result
+
+@router.put("/{id}", status_code=200, summary="Obtiene un objeto de unidad medida en la base de datos para poder editarlo", response_model=UnidadMedidaGet)
+async def update_unidad_medida(id: int, unidad_medida: UnidadesMedidaCreate, db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    result = handle_result(UnidadesMedidaService(db).update_unidad_medida(id, unidad_medida))
+    return result
+
+@router.delete("/{id}", status_code=200, summary="Obtiene un objeto de unidad medida en la base de datos para posteriormente borrarlo", response_model=ResponseModel)
+async def delete_unidad_medida(id: int, db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    result = handle_result(UnidadesMedidaService(db).delete_unidad_medida(id))
+    return result

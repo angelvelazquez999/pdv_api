@@ -27,3 +27,22 @@ class UnidadesMedidaService(AppService):
         result = handle_result(self.get_unidad_medida_by_id(unidad_medida.id))
         
         return ServiceResult((result, unidad_medida.id))
+    
+    def update_unidad_medida(self, id: int, item: UnidadesMedidaCreate) -> ServiceResult:
+
+        exist_unidad_medida = UnidadMedidaCRUD(self.db).get_unidad_medida_by_id(id)
+        if not exist_unidad_medida:
+            return ServiceResult(AppException.UpdateProveedor({"Message": f"No se ha encontrado un proveedor con el id: {id}"}))
+
+        UnidadMedidaCRUD(self.db).update_unidad_medida(item, exist_unidad_medida)
+        result = handle_result(self.get_unidad_medida_by_id(id))
+
+        return ServiceResult(result)
+
+    def delete_unidad_medida(self, id: int) -> ServiceResult:
+        unidad_medida = UnidadMedidaCRUD(self.db).get_unidad_medida_by_id(id)
+        if not unidad_medida:
+            return ServiceResult(AppException.DeleteProveedor({"Message": f"No se ha encontrado un proveedor con el id: {id}"}))
+
+        UnidadMedidaCRUD(self.db).delete_unidad_medida(unidad_medida)
+        return ServiceResult({"Message": f"La unidad de medida {unidad_medida.nombre} fue eliminada exitosamente"})
