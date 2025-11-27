@@ -170,3 +170,28 @@ class AppException(object):
             """
             status_code = 404
             AppExceptionCase.__init__(self, status_code, context)
+            
+    class DeleteCategoriaProducto(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Error al eliminar categoría de producto
+            """
+            status_code = 500
+            AppExceptionCase.__init__(self, status_code, context)
+            
+            
+    class GetCategoriaProducto(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Categoría de producto no encontrada
+            """
+            status_code = 404
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class UpdateCategoriaProducto(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Categoría de producto no encontrada
+            """
+            status_code = 404
+            AppExceptionCase.__init__(self, status_code, context)

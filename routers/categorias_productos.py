@@ -44,3 +44,13 @@ async def create_categoria_producto(
 ):
     result, categoria_producto_id = handle_result(CategoriasProductosService(db).create_categoria_producto(item))
     return result
+
+@router.put("/{id}", status_code=200, summary="Obtiene un objeto metodo de pago en la base de datos para poder editarlo", response_model=CategoriasProductosGet)
+async def update_categoria_producto(id: int, categoria_producto: CategoriasProductosCreate, db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    result = handle_result(CategoriasProductosService(db).update_categoria_producto(id, categoria_producto))
+    return result
+
+@router.delete("/{id}", status_code=200, summary="Obtiene un objeto de metodo de pago en la base de datos para posteriormente borrarlo", response_model=ResponseModel)
+async def delete_categoria_producto(id: int, db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    result = handle_result(CategoriasProductosService(db).delete_categoria_producto(id))
+    return result
