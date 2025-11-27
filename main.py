@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routers import (usuario, auth_router, unidades_medida, metodos_pago, categorias_productos,
-                     proveedores)
+                     proveedores, productos)
 
 from utils.app_exceptions import app_exception_handler, AppExceptionCase
 
@@ -28,6 +28,7 @@ app.include_router(unidades_medida.router)
 app.include_router(metodos_pago.router)
 app.include_router(categorias_productos.router)
 app.include_router(proveedores.router)
+app.include_router(productos.router)
 
 
 @app.get("/")

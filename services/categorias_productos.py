@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from dao.categorias_productos import CategoriasProductosCRUD
+from dao.categorias_productos_dao import CategoriasProductosCRUD
 from schemas.categorias_productos import CategoriasProductosCreate, CategoriasProductosGet
 from services.main import AppService
 from utils.service_result import ServiceResult, handle_result

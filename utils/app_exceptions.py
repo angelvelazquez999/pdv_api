@@ -195,3 +195,36 @@ class AppException(object):
             """
             status_code = 404
             AppExceptionCase.__init__(self, status_code, context)
+
+
+    class CreateProducto(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Error al crear producto
+            """
+            status_code = 500
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class GetProducto(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Producto no encontrado
+            """
+            status_code = 404
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class UpdateProducto(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Producto no encontrado
+            """
+            status_code = 404
+            AppExceptionCase.__init__(self, status_code, context)
+            
+    class DeleteProducto(AppExceptionCase):
+        def __init__(self, context: dict = None):
+            """
+            Error al eliminar producto
+            """
+            status_code = 500
+            AppExceptionCase.__init__(self, status_code, context)

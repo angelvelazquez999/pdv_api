@@ -25,6 +25,9 @@ def upgrade() -> None:
         sa.Column('producto_id', sa.Integer(), sa.ForeignKey('productos.id', ondelete='CASCADE'), nullable=False),
         sa.Column('stock_actual', sa.Integer(), nullable=False, server_default='0'),
         sa.Column('stock_minimo', sa.Integer(), nullable=False, server_default='0'),
+        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.func.now(), onupdate=sa.func.now(), nullable=True),
+        sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
     )
 
 
