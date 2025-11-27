@@ -1,31 +1,31 @@
 import datetime
-from models.proveedores import Proveedores
+from models.proveedores import ProveedoresDB
 from schemas.proveedores import ProveedoresCreate
 from services.main import AppCRUD
 
 from typing import Optional
 
 class ProveedoresCRUD(AppCRUD):
-    def get_all_proveedores(self, skip: int = 0, limit: int = 100) -> list[Proveedores]:
+    def get_all_proveedores(self, skip: int = 0, limit: int = 100) -> list[ProveedoresDB]:
         all_proveedores = self.db.query(
-            Proveedores
-        ).filter(Proveedores.deleted_at.is_(None)).order_by(Proveedores.id.asc()).offset(skip).limit(limit)
+            ProveedoresDB
+        ).filter(ProveedoresDB.deleted_at.is_(None)).order_by(ProveedoresDB.id.asc()).offset(skip).limit(limit)
         return all_proveedores
     
-    def get_proveedor_by_id(self, id: int) -> Proveedores:
-        proveedor = self.db.query(Proveedores).where(Proveedores.id == id).one_or_none()
+    def get_proveedor_by_id(self, id: int) -> ProveedoresDB:
+        proveedor = self.db.query(ProveedoresDB).where(ProveedoresDB.id == id).one_or_none()
         if proveedor:
             return proveedor
         return None
     
-    def get_proveedor_by_id_for_router(self, id: int) -> Proveedores:
-        proveedor = self.db.query(Proveedores).where(Proveedores.id == id).filter(Proveedores.deleted_at.is_(None)).one_or_none()
+    def get_proveedor_by_id_for_router(self, id: int) -> ProveedoresDB:
+        proveedor = self.db.query(ProveedoresDB).where(ProveedoresDB.id == id).filter(ProveedoresDB.deleted_at.is_(None)).one_or_none()
         if proveedor:
             return proveedor
         return None
     
-    def create_proveedor(self, item: ProveedoresCreate) -> Proveedores:
-        proveedor = Proveedores(
+    def create_proveedor(self, item: ProveedoresCreate) -> ProveedoresDB:
+        proveedor = ProveedoresDB(
             nombre=item.nombre,
             telefono=item.telefono,
             correo=item.correo
@@ -35,7 +35,7 @@ class ProveedoresCRUD(AppCRUD):
         self.db.refresh(proveedor)
         return proveedor
     
-    def update_proveedor(self, item: ProveedoresCreate, proveedor: Proveedores):
+    def update_proveedor(self, item: ProveedoresCreate, proveedor: ProveedoresDB):
         proveedor.nombre = item.nombre
         proveedor.telefono = item.telefono
         proveedor.correo = item.correo
@@ -46,7 +46,7 @@ class ProveedoresCRUD(AppCRUD):
         return proveedor
     
     
-    def delete_proveedor(self, proveedor: Proveedores):
+    def delete_proveedor(self, proveedor: ProveedoresDB):
         proveedor.deleted_at = datetime.datetime.now()
 
         self.db.add(proveedor)

@@ -2,7 +2,7 @@ from models.safe_delete_model import SafeDeleteModel
 from sqlalchemy import Column, Integer, String
 
 
-class Proveedores(SafeDeleteModel):
+class ProveedoresDB(SafeDeleteModel):
     __tablename__ = "proveedores"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)

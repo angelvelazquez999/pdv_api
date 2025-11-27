@@ -2,7 +2,7 @@ from models.safe_delete_model import SafeDeleteModel
 from sqlalchemy import Column, Integer, String
 
 
-class CategoriasProductos(SafeDeleteModel):
+class CategoriasProductosDB(SafeDeleteModel):
     __tablename__ = "categorias_productos"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)

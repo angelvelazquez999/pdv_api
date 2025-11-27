@@ -2,7 +2,7 @@ from models.safe_delete_model import SafeDeleteModel
 from sqlalchemy import Column, Integer, String
 
 
-class UnidadMedida(SafeDeleteModel):
+class UnidadMedidaDB(SafeDeleteModel):
     __tablename__ = "unidades_medida"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
