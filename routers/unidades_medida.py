@@ -39,7 +39,8 @@ async def get_unidad_medida(
 @router.post("/", status_code=200, summary="Crea una nueva unidad de medida", response_model=UnidadMedidaGet)
 async def create_unidad_medida(
     item: UnidadesMedidaCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: Usuario = Depends(get_current_user)
 ):
     result, unidad_medida_id = handle_result(UnidadesMedidaService(db).create_unidad_medida(item))
     return result
