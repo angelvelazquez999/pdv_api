@@ -20,7 +20,18 @@ class ProductosService(AppService):
         if not producto:
             return ServiceResult(AppException.GetProducto({"Message": f"No se ha encontrado un producto con el id: {producto_id}"}))
         return ServiceResult(producto)
+    
+    def get_producto_by_sku(self, sku: str) -> ServiceResult:
+        producto = ProductosCRUD(self.db).get_producto_by_sku_for_router(sku)
+        if not producto:
+            return ServiceResult(AppException.GetProducto({"Message": f"No se ha encontrado un producto con el sku: {sku}"}))
+        return ServiceResult(producto)
 
+    def get_producto_by_code(self, code: str) -> ServiceResult:
+        producto = ProductosCRUD(self.db).get_producto_by_code_for_router(code)
+        if not producto:
+            return ServiceResult(AppException.GetProducto({"Message": f"No se ha encontrado un producto con el código: {code}"}))
+        return ServiceResult(producto)
 
     def create_producto(self, item: ProductosCreate) -> ServiceResult:
         

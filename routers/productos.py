@@ -35,6 +35,23 @@ async def get_producto_by_id(
     result = handle_result(ProductosService(db).get_producto_by_id(producto_id))
     return result
 
+@router.get("/sku/{sku}", status_code=200, summary="Obtiene un producto por SKU", response_model=ProductosGet)
+async def get_producto_by_sku(
+    sku: str,
+    db: Session = Depends(get_db),
+    current_user: Usuario = Depends(get_current_user)
+):
+    result = handle_result(ProductosService(db).get_producto_by_sku(sku))
+    return result
+
+@router.get("/codigo/{code}", status_code=200, summary="Obtiene un producto por código de barras", response_model=ProductosGet)
+async def get_producto_by_code(
+    code: str,
+    db: Session = Depends(get_db),
+    current_user: Usuario = Depends(get_current_user)
+):
+    result = handle_result(ProductosService(db).get_producto_by_code(code))
+    return result
 
 @router.post("/", status_code=200, summary="Crea un nuevo producto", response_model=ProductosGet)
 async def create_producto(

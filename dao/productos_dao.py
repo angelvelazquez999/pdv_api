@@ -80,6 +80,64 @@ class ProductosCRUD(AppCRUD):
         ).order_by(
             ProductosDB.id.asc()
         ).first()
+        
+        
+    def get_producto_by_sku_for_router(self, sku: str) -> ProductosDB:
+        return self.db.query(
+            ProductosDB.id,
+            ProductosDB.sku,
+            ProductosDB.nombre,
+            ProductosDB.descripcion,
+            ProductosDB.categoria_id,
+            CategoriasProductosDB.id.label("categoria_producto_id"),
+            CategoriasProductosDB.nombre.label("categoria_producto"),
+            ProductosDB.unidad_medida_id,
+            UnidadMedidaDB.id.label("unidad_medida_id"),
+            UnidadMedidaDB.nombre.label("unidad_medida"),
+            ProductosDB.precio_venta,
+            ProductosDB.precio_compra,
+            ProductosDB.codigo_barras,
+        ).join(
+            CategoriasProductosDB, 
+            ProductosDB.categoria_id == CategoriasProductosDB.id
+        ).join(
+            UnidadMedidaDB, 
+            ProductosDB.unidad_medida_id == UnidadMedidaDB.id
+        ).where(
+            ProductosDB.sku == sku,
+            ProductosDB.deleted_at == None
+        ).order_by(
+            ProductosDB.id.asc()
+        ).first()
+        
+    def get_producto_by_code_for_router(self, code: str) -> ProductosDB:
+        return self.db.query(
+            ProductosDB.id,
+            ProductosDB.sku,
+            ProductosDB.nombre,
+            ProductosDB.descripcion,
+            ProductosDB.categoria_id,
+            CategoriasProductosDB.id.label("categoria_producto_id"),
+            CategoriasProductosDB.nombre.label("categoria_producto"),
+            ProductosDB.unidad_medida_id,
+            UnidadMedidaDB.id.label("unidad_medida_id"),
+            UnidadMedidaDB.nombre.label("unidad_medida"),
+            ProductosDB.precio_venta,
+            ProductosDB.precio_compra,
+            ProductosDB.codigo_barras,
+        ).join(
+            CategoriasProductosDB, 
+            ProductosDB.categoria_id == CategoriasProductosDB.id
+        ).join(
+            UnidadMedidaDB, 
+            ProductosDB.unidad_medida_id == UnidadMedidaDB.id
+        ).where(
+            ProductosDB.codigo_barras == code,
+            ProductosDB.deleted_at == None
+        ).order_by(
+            ProductosDB.id.asc()
+        ).first()
+    
     
     def create_producto(self, item: ProductosCreate, sku: str) -> ProductosDB:
         producto = ProductosDB(
