@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from dao.productos_dao import ProductosCRUD
 from dao.categorias_productos_dao import CategoriasProductosCRUD
-from dao.unidades_medida_dao import UnidadMedidaCRUD
 from schemas.productos import ProductosCreate
 from services.main import AppService
 from utils.service_result import ServiceResult, handle_result

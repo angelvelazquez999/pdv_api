@@ -14,6 +14,19 @@ class ProductosGet(SafeDelete):
     nombre: str
     descripcion: Optional[str] = None
     categoria_id: int
+    categoria_producto: str
+    unidad_medida_id: int
+    unidad_medida: str
+    precio_venta: float
+    precio_compra: float
+    codigo_barras: Optional[str] = None
+    
+class ProductosToUpdate(SafeDelete):
+    id: int
+    sku: str
+    nombre: str
+    descripcion: Optional[str] = None
+    categoria_id: int
     unidad_medida_id: int
     precio_venta: float
     precio_compra: float
